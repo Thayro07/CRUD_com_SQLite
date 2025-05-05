@@ -73,3 +73,34 @@ const user = await prisma.user.delete({ // Deleta o usuário com base no ID forn
     });
 }
 } 
+
+
+export const getalluserId = async (req, res) => { // Função para lidar com a rota GET de obter um usuário específico
+    const id = req.params.id; // Extrai o ID do usuário a ser obtido dos parâmetros da requisição
+
+    try {
+        const user = await prisma.user.findUnique({ // Busca um usuário específico no banco de dados com base no ID
+            where: { id: Number(id) },
+        });
+        res.status(200).json(user); // Envia o usuário encontrado como resposta JSON com status 200
+    } catch (error) {
+        res.status(500).json({
+            mensagem: "Erro ao buscar usuário.",
+            erro: error.message,
+        });
+    }
+}
+
+
+//⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣠⣤⣤⣤⣤⣤⣤⣤⣀⡀⠀⠀⠀⠀⠀
+//⠀⠀⠀⠀⠀⠀⠀⠀⣠⣴⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣦⣄⠀⠀
+//⠀⠀⠀⠀⢀⣤⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠛⠉⠉⠀⠀
+//⣤⣶⣤⣤⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡟⠁⠀⠀⠀⠀⠀⠀
+//⢿⣿⣿⣿⣿⣿⣿⣿⡿⠟⠛⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣶⣤⡀⠀⠀
+//⠘⣿⣿⣿⣿⣿⣿⠃⠀⠀⠀⠀⠙⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦⡀
+//⠀⣿⠁⢻⣿⣿⠇⠀⠀⠀⣴⣄⠀⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠿⠿⠷
+//⠀⢻⠀⢀⣿⣿⠀⠀⠀⠀⣿⣿⡄⢸⣿⣿⣿⣿⣿⣿⣿⣟⠉⠀⠀⠀⠀⠀
+//⠀⠘⡆⠘⣿⡇⠀⠀⠀⠀⠘⠛⢃⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣄⠀⠀⠀
+//⠀⢀⣼⣶⣾⣧⣤⣤⣄⣀⣤⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⡀⠀
+//⠀⠀⠉⠉⠛⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠟⠛⠛⠛⠛⠛⠛⠿⠿⣧⠀
+//⠀⠀⠀⠀⠀⠀⠈⠙⠛⠻⠛⠛⠛⠉⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
