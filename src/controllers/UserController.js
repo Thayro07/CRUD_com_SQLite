@@ -17,13 +17,14 @@ export const getalluser = async (req, res) => { // Função para lidar com a rot
 };
                                    //adicionar usuario
 export const addNewUser = async (req, res) => { // Função para lidar com a rota POST de adicionar um novo usuário
-    const { name, email } = req.body; // Extrai o nome e o email do corpo da requisição
+    const { name, email,password } = req.body; // Extrai o nome e o email do corpo da requisição
 
     try {
         const novoUsuario = await prisma.user.create({ // Cria um novo objeto de usuário com os dados fornecidos
             data: {
                 name,
                 email,
+                password,
             },
         });
         res.status(201).json(novoUsuario);
@@ -104,3 +105,4 @@ export const getalluserId = async (req, res) => { // Função para lidar com a r
 //⠀⢀⣼⣶⣾⣧⣤⣤⣄⣀⣤⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⡀⠀
 //⠀⠀⠉⠉⠛⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠟⠛⠛⠛⠛⠛⠛⠿⠿⣧⠀
 //⠀⠀⠀⠀⠀⠀⠈⠙⠛⠻⠛⠛⠛⠉⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+
